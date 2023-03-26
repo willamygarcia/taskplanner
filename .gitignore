@@ -1,6 +1,23 @@
 # Created by https://www.toptal.com/developers/gitignore/api/netbeans,eclipse,visualstudiocode,intellij,windows,linux,macos
 # Edit at https://www.toptal.com/developers/gitignore?templates=netbeans,eclipse,visualstudiocode,intellij,windows,linux,macos
 
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+
 ### Eclipse ###
 .metadata
 bin/
@@ -229,6 +246,8 @@ Temporary Items
 *.icloud
 
 ### NetBeans ###
+!**/src/main/**/build/
+!**/src/test/**/build/
 **/nbproject/private/
 **/nbproject/Makefile-*.mk
 **/nbproject/Package-*.bash
