@@ -1,26 +1,42 @@
 package br.com.cobax.taskpanner.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
+import br.com.cobax.taskpanner.models.enums.TarefaStatus;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Tarefa implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	private String descricao;
 
-	private CategoriaTarefa categoria;
+	@ManyToOne
+	private TarefaCategoria categoria;
 
-	private LocalDateTime dataEntrega;
+	private ZonedDateTime dataEntrega;
 
 	private Boolean visivel;
+
+	@Enumerated(EnumType.STRING)
+	private TarefaStatus status;
 
 	public Tarefa() {
 	}
 
-	public Tarefa(Long id, String descricao, CategoriaTarefa categoria, LocalDateTime dataEntrega, Boolean visivel) {
+	public Tarefa(Long id, String descricao, TarefaCategoria categoria, ZonedDateTime dataEntrega, Boolean visivel) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -45,19 +61,19 @@ public class Tarefa implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public CategoriaTarefa getCategoria() {
+	public TarefaCategoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(CategoriaTarefa categoria) {
+	public void setCategoria(TarefaCategoria categoria) {
 		this.categoria = categoria;
 	}
 
-	public LocalDateTime getDataEntrega() {
+	public ZonedDateTime getDataEntrega() {
 		return dataEntrega;
 	}
 
-	public void setDataEntrega(LocalDateTime dataEntrega) {
+	public void setDataEntrega(ZonedDateTime dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
 
@@ -67,6 +83,14 @@ public class Tarefa implements Serializable {
 
 	public void setVisivel(Boolean visivel) {
 		this.visivel = visivel;
+	}
+
+	public TarefaStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(TarefaStatus status) {
+		this.status = status;
 	}
 
 }
