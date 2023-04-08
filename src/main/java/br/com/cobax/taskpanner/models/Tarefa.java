@@ -2,8 +2,12 @@ package br.com.cobax.taskpanner.models;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.cobax.taskpanner.models.enums.TarefaStatus;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -23,7 +27,8 @@ public class Tarefa implements Serializable {
 
 	private String descricao;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private TarefaCategoria categoria;
 
 	private ZonedDateTime dataEntrega;
@@ -33,16 +38,21 @@ public class Tarefa implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private TarefaStatus status;
 
+	@ManyToOne
+	private Usuario usuario;
+
 	public Tarefa() {
 	}
 
-	public Tarefa(Long id, String descricao, TarefaCategoria categoria, ZonedDateTime dataEntrega, Boolean visivel) {
+	public Tarefa(Long id, String descricao, TarefaCategoria categoria, ZonedDateTime dataEntrega, Boolean visivel,
+			TarefaStatus status) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
 		this.categoria = categoria;
 		this.dataEntrega = dataEntrega;
 		this.visivel = visivel;
+		this.status = status;
 	}
 
 	public Long getId() {
@@ -91,6 +101,31 @@ public class Tarefa implements Serializable {
 
 	public void setStatus(TarefaStatus status) {
 		this.status = status;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tarefa other = (Tarefa) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }

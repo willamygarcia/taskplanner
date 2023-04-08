@@ -2,10 +2,13 @@ package br.com.cobax.taskpanner.models;
 
 import java.io.Serializable;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Usuario implements Serializable {
@@ -17,8 +20,12 @@ public class Usuario implements Serializable {
 	private Long id;
 
 	private String usuario;
-
-	private String senha;
+	
+	@Transient
+	@Value(value = "${TESTE}")
+	String valor;
+	
+	private String senha = valor;
 
 	public Usuario() {
 	}
