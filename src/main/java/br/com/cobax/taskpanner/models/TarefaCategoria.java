@@ -1,14 +1,14 @@
 package br.com.cobax.taskpanner.models;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class TarefaCategoria implements Serializable {
@@ -18,11 +18,10 @@ public class TarefaCategoria implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
+	
+	@NotNull
+	@NotBlank(message = "A descrição no pode ser vazia!")
 	private String descricao;
-
-	@OneToMany(mappedBy = "categoria")
-	private List<Tarefa> tarefas = new ArrayList<>();;
 
 	public TarefaCategoria() {
 	}
@@ -49,12 +48,21 @@ public class TarefaCategoria implements Serializable {
 		this.descricao = descricao;
 	}
 
-	public List<Tarefa> getTarefas() {
-		return tarefas;
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
-	public void setTarefas(List<Tarefa> tarefas) {
-		this.tarefas = tarefas;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TarefaCategoria other = (TarefaCategoria) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }

@@ -60,17 +60,13 @@ public class LoadDatabase {
 		Tarefa t2 = new Tarefa(null, "Criar Crud", tc2, ZonedDateTime.now(), true, TarefaStatus.PENDENTE);
 		Tarefa t3 = new Tarefa(null, "Arrumar a casa", tc3, ZonedDateTime.now(), true, TarefaStatus.PENDENTE);
 		Tarefa t4 = new Tarefa(null, "Lavar a louça", tc3, ZonedDateTime.now(), true, TarefaStatus.PENDENTE);
-		tc1.getTarefas().add(t1);
-		tc2.getTarefas().add(t2);
-		tc3.getTarefas().add(t3);
-		tc3.getTarefas().add(t4);
 		
 		t1.setUsuario(u1);
 		t2.setUsuario(u1);
 		t3.setUsuario(u1);
 		t4.setUsuario(u1);
 
-		//tarefaCategoriaRepository.saveAll(Arrays.asList(tc1, tc2, tc3));
+		tarefaCategoriaRepository.saveAll(Arrays.asList(tc1, tc2, tc3));
 		tarefaRepository.saveAll(Arrays.asList(t1, t2, t3, t4));
 	}
 }

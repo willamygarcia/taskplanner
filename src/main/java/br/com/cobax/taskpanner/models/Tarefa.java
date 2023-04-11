@@ -4,10 +4,7 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import br.com.cobax.taskpanner.models.enums.TarefaStatus;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -15,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Tarefa implements Serializable {
@@ -24,13 +23,15 @@ public class Tarefa implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
+	
+	@NotNull
+	@NotBlank(message = "{validator.notblank}")
 	private String descricao;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
+	@ManyToOne
 	private TarefaCategoria categoria;
 
+	
 	private ZonedDateTime dataEntrega;
 
 	private Boolean visivel;
