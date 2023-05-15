@@ -20,7 +20,7 @@ public class TarefaCategoria implements Serializable {
 	private Long id;
 	
 	@NotNull
-	@NotBlank(message = "A descrição no pode ser vazia!")
+	@NotBlank(message = "{validator.notblank}")
 	private String descricao;
 
 	public TarefaCategoria() {

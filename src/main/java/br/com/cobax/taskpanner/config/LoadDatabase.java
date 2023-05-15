@@ -57,7 +57,7 @@ public class LoadDatabase {
 		TarefaCategoria tc3 = new TarefaCategoria(null, "Casa");
 
 		Tarefa t1 = new Tarefa(null, "Arrumar a cama", tc1, ZonedDateTime.now(), true, TarefaStatus.CONCLUIDO);
-		Tarefa t2 = new Tarefa(null, "Criar Crud", tc2, ZonedDateTime.now(), true, TarefaStatus.PENDENTE);
+		Tarefa t2 = new Tarefa(null, "Criar Crud", tc2, ZonedDateTime.now(), true, TarefaStatus.ABERTA);
 		Tarefa t3 = new Tarefa(null, "Arrumar a casa", tc3, ZonedDateTime.now(), true, TarefaStatus.PENDENTE);
 		Tarefa t4 = new Tarefa(null, "Lavar a louça", tc3, ZonedDateTime.now(), true, TarefaStatus.PENDENTE);
 		

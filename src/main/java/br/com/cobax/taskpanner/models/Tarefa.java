@@ -37,7 +37,7 @@ public class Tarefa implements Serializable {
 	private Boolean visivel;
 
 	@Enumerated(EnumType.STRING)
-	private TarefaStatus status;
+	private TarefaStatus status = TarefaStatus.ABERTA;
 
 	@ManyToOne
 	private Usuario usuario;
